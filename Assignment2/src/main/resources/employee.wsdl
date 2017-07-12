@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<definitions xmlns:xs="http://www.bcit.ca/comp4656/employee/xml"
+	xmlns:tns="http://www.bcit.ca/comp4656/employee/types/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" name="EmployeeService"
+	targetNamespace="http://www.bcit.ca/comp4656/employee/xml">
+	<types>
+		<xsd:schema>
+			<xsd:import namespace="http://www.bcit.ca/comp4656/employee/types/"
+				schemaLocation="employee.xsd"></xsd:import>
+		</xsd:schema>
+	</types>
+
+	<message name="find">
+		<part name="findReq" element="tns:findRequest" />
+	</message>
+
+	<message name="findResult">
+		<part name="findRes" element="tns:findResponse" />
+	</message>
+
+	<message name="findError">
+		<part name="findEmployeeFault" element="tns:findEmployeeFault" />
+	</message>
+
+	<message name="delete">
+		<part name="deleteReq" element="tns:deleteRequest" />
+	</message>
+
+	<message name="deleteResult">
+		<part name="deleteRes" element="tns:deleteResponse" />
+	</message>
+
+	<message name="deleteError">
+		<part name="deleteEmployeeFault" element="tns:deleteFault" />
+	</message>
+
+	<message name="getEmployees">
+		<part name="getEmployeesReq" element="tns:getEmployeesRequest"/>
+	</message>
+
+	<message name="getEmployeesResult">
+		<part name="getEmployeesRes" element="tns:getEmployeesResponse"/>
+	</message>
+	
+	<message name="getEmployeesError">
+		<part name="getEmployeesFault" element="tns:getEmployeesFault"/>
+	</message>
+	
+	<message name="add">
+		<part name="addReq" element="tns:addRequest" />
+	</message>
+
+	<message name="addResult">
+		<part name="addRes" element="tns:addResponse" />
+	</message>
+
+	<message name="addError">
+		<part name="addEmployeeFault" element="tns:addFault" />
+	</message>
+	
+	<portType name="EmployeeServicePort">
+		<operation name="find">
+			<input message="xs:find" />
+			<output message="xs:findResult" />
+			<fault name="findError" message="xs:findError" />
+		</operation>
+
+		<operation name="delete">
+			<input message="xs:delete" />
+			<output message="xs:deleteResult" />
+			<fault name="deleteError" message="xs:deleteError" />
+		</operation>
+		
+		<operation name="getEmployees">
+			<input message="xs:getEmployees"/>
+			<output message="xs:getEmployeesResult"/>
+			<fault name="getEmployeesError" message="xs:getEmployeesError"/>
+		</operation>
+		
+		<operation name="add">
+			<input message="xs:add" />
+			<output message="xs:addResult" />
+			<fault name="addError" message="xs:addError" />
+		</operation>
+	</portType>
+
+	<binding name="EmployeeServicePortBinding" type="xs:EmployeeServicePort">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="find">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="findError">
+				<soap:fault name="findError" use="literal" />
+			</fault>
+		</operation>
+
+		<operation name="delete">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="deleteError">
+				<soap:fault name="deleteError" use="literal" />
+			</fault>
+		</operation>
+		
+		<operation name="getEmployees">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="getEmployeesError">
+				<soap:fault name="getEmployeesError" use="literal" />
+			</fault>
+		</operation>
+		
+		<operation name="add">
+			<soap:operation soapAction="" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+			<fault name="addError">
+				<soap:fault name="addError" use="literal" />
+			</fault>
+		</operation>
+	</binding>
+
+	<service name="EmployeeService">
+		<port name="EmployeeServicePort" binding="xs:EmployeeServicePortBinding">
+			<soap:address location="http://localhost:8080/EmployeeServices" />
+		</port>
+	</service>
+</definitions>

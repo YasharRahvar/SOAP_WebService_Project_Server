@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xsd:schema xmlns:xb="http://www.bcit.ca/comp4656/employee/types/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.bcit.ca/comp4656/employee/types/"
+	version="1.0">
+
+	<xsd:element name="findRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="findEmployeeID" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="findResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="result" type="xb:employee" />
+				<xsd:element name="responseCode" type="xb:responseCode" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="findEmployeeFault">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="faultInfo" type="xsd:string" />
+				<xsd:element name="message" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="deleteRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="deleteEmployeeID" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="deleteResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="responseCode" type="xb:responseCode" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="deleteFault">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="faultInfo" type="xsd:string" />
+				<xsd:element name="message" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="getEmployeesRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="getEmployeesReq" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="getEmployeesResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="getEmployees" type="xb:employee"
+					maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="getEmployeesFault">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="faultInfo" type="xsd:string" />
+				<xsd:element name="message" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="addRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="addEmployee" type="xb:employee" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="addResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="responseCode" type="xb:responseCode" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="addFault">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="faultInfo" type="xsd:string" />
+				<xsd:element name="message" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="responseCode">
+		<xsd:sequence>
+			<xsd:element name="description" type="xsd:string" />
+			<xsd:element name="code" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="employee">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:string" />
+			<xsd:element name="firstName" type="xsd:string" />
+			<xsd:element name="lastName" type="xsd:string" />
+			<xsd:element name="dob" type="xsd:date"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>
